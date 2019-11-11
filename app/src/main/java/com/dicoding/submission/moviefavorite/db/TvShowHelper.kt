@@ -5,28 +5,28 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.dicoding.submission.moviefavorite.db.DatabaseContract.MOVIE_TABLE_NAME
-import com.dicoding.submission.moviefavorite.db.DatabaseContract.MovieColumn.Companion._ID
+import com.dicoding.submission.moviefavorite.db.DatabaseContract.TV_SHOW_TABLE_NAME
+import com.dicoding.submission.moviefavorite.db.DatabaseContract.TvShowColumn.Companion._ID
 import java.sql.SQLException
 
-class MovieHelper(context: Context) {
+class TvShowHelper(context: Context) {
 
     companion object {
-        private var MOVIE_TABLE = MOVIE_TABLE_NAME
+        private var TV_SHOW_TABLE = TV_SHOW_TABLE_NAME
         private lateinit var databaseHelper: DatabaseHelper
-        private var INSTANCE: MovieHelper? = null
+        private var INSTANCE: TvShowHelper? = null
         private lateinit var database: SQLiteDatabase
     }
 
-    fun getInstance(context: Context): MovieHelper {
+    fun getInstance(context: Context): TvShowHelper {
         if (INSTANCE == null) {
             synchronized(SQLiteOpenHelper::class.java) {
                 if (INSTANCE == null) {
-                    INSTANCE = MovieHelper(context)
+                    INSTANCE = TvShowHelper(context)
                 }
             }
         }
-        return INSTANCE as MovieHelper
+        return INSTANCE as TvShowHelper
     }
 
     @Throws(SQLException::class)
@@ -42,7 +42,7 @@ class MovieHelper(context: Context) {
 
     fun queryAll(): Cursor {
         return database.query(
-            MOVIE_TABLE,
+            TV_SHOW_TABLE_NAME,
             null,
             null,
             null,
@@ -53,7 +53,7 @@ class MovieHelper(context: Context) {
 
     fun queryById(id: String): Cursor {
         return database.query(
-            MOVIE_TABLE,
+            TV_SHOW_TABLE,
             null,
             "$_ID = ?",
             arrayOf(id),
@@ -64,15 +64,15 @@ class MovieHelper(context: Context) {
     }
 
     fun insert(values: ContentValues?): Long {
-        return database.insert(MOVIE_TABLE, null, values)
+        return database.insert(TV_SHOW_TABLE, null, values)
     }
 
     fun update(id: String, values: ContentValues?): Int {
-        return database.update(MOVIE_TABLE, values, "$_ID = ?", arrayOf(id))
+        return database.update(TV_SHOW_TABLE, values, "$_ID = ?", arrayOf(id))
     }
 
     fun deleteById(id: String): Int {
-        return database.delete(MOVIE_TABLE, "$_ID = '$id'", null)
+        return database.delete(TV_SHOW_TABLE, "$_ID = '$id'", null)
     }
 
 }
