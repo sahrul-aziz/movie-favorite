@@ -2,15 +2,14 @@ package com.dicoding.submission.moviefavorite.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.submission.moviefavorite.R
-import com.dicoding.submission.moviefavorite.model.MovieBase
+import com.dicoding.submission.moviefavorite.model.MovieResults
 
 class MovieFavoriteAdapter(private val activity: Activity) : RecyclerView.Adapter<MovieViewHolder>() {
 
-    var listMovie = ArrayList<MovieBase>()
+    var listMovie = ArrayList<MovieResults>()
         set(value) {
             if (listMovie.size > 0) {
                 this.listMovie.clear()
@@ -19,12 +18,12 @@ class MovieFavoriteAdapter(private val activity: Activity) : RecyclerView.Adapte
             notifyDataSetChanged()
         }
 
-    fun addItem(movie: MovieBase) {
+    fun addItem(movie: MovieResults) {
         this.listMovie.add(movie)
         notifyItemInserted(this.listMovie.size - 1)
     }
 
-    fun updateItem(position: Int, movie: MovieBase) {
+    fun updateItem(position: Int, movie: MovieResults) {
         this.listMovie[position] = movie
         notifyItemChanged(position, movie)
     }

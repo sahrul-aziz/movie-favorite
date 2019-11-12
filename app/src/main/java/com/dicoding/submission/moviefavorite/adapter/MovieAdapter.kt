@@ -1,15 +1,14 @@
 package com.dicoding.submission.moviefavorite.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.submission.moviefavorite.R
-import com.dicoding.submission.moviefavorite.model.MovieBase
+import com.dicoding.submission.moviefavorite.model.MovieResults
 
-class MovieAdapter(private val context: Context) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 
-    var listMovie = ArrayList<MovieBase>()
+    var listMovie = ArrayList<MovieResults>()
         set(value) {
             if (listMovie.size > 0) {
                 this.listMovie.clear()

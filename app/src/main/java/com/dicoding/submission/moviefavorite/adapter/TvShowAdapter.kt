@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.submission.moviefavorite.R
 import com.dicoding.submission.moviefavorite.model.TvShowBase
+import com.dicoding.submission.moviefavorite.model.TvShowResults
 
-class TvShowAdapter(private val context: Context) : RecyclerView.Adapter<TvShowViewHolder>() {
+class TvShowAdapter : RecyclerView.Adapter<TvShowViewHolder>() {
 
-    var listTvShow = ArrayList<TvShowBase>()
+    var listTvShow = ArrayList<TvShowResults>()
         set(value) {
             if (listTvShow.size > 0) {
                 this.listTvShow.clear()

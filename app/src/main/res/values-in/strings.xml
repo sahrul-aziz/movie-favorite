@@ -4,4 +4,20 @@
     <string name="title_movie">Film</string>
     <string name="title_tv_show">Acara TV</string>
     <string name="title_favorite">Favorit</string>
+    <string name="add_favorite">Tambah Favorit</string>
+    <string name="view_detail">Lihat Detil</string>
+    <string name="no_movie">Ups, tidak ada Film disini!</string>
+    <string name="no_tv_show">Ups, tidak ada Acara Film disini!</string>
+    <string name="no_favorite_movie">Kamu tidak memiliki Film favorit saat ini</string>
+    <string name="no_favorite_tv_show">Kamu tidak memiliki Acara TV favorit saat ini</string>
+
+    <string name="movie_poster">Poster Film</string>
+    <string name="movie_title">Judul Film</string>
+    <string name="tv_show_poster">Poster Acara TV</string>
+    <string name="tv_show_title">Judul Acara TV</string>
+    <string name="score">Nilai</string>
+    <string name="language_label">Bahasa: </string>
+    <string name="language_placeholder">Inggris</string>
+    <string name="overview">Kilasan Singkat</string>
+    <string name="overview_not_available">Kilasan Singkat dalam bahasa ini tidak tersedia</string>
 </resources>

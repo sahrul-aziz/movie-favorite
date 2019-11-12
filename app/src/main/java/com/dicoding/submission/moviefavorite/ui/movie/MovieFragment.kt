@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submission.moviefavorite.R
@@ -28,7 +29,6 @@ class MovieFragment : Fragment() {
     ): View? {
         root = inflater.inflate(R.layout.fragment_movie, container, false)
         return root
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class MovieFragment : Fragment() {
         movieViewModel.listMovie.observe(this, Observer {
             if (it != null) {
                 root.movie_empty.visibility = View.GONE
-                movieAdapter.setData(it)
+                movieAdapter.listMovie = it
             } else {
                 root.movie_empty.text = resources.getString(R.string.no_movie)
                 root.movie_empty.visibility = View.VISIBLE
@@ -58,12 +58,12 @@ class MovieFragment : Fragment() {
             }
         })
 
-        if (movieViewModel.getMovie() == null) {
+        val movie = movieViewModel.getMovie()
+        if (movie == null) {
             showLoading(true)
             movieViewModel.retrieveMovie()
         } else {
-            val movieBase = movieViewModel.getMovie()
-            movieBase?.let { movieAdapter.setData(it) }
+            movieAdapter.listMovie = movie
         }
     }
 

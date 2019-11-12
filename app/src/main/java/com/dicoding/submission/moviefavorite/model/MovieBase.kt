@@ -8,5 +8,5 @@ data class MovieBase(
     val page : Int = 0,
     val total_results : Int = 0,
     val total_pages : Int = 0,
-    val results : List<MovieResults> = listOf()
+    val results : ArrayList<MovieResults> = arrayListOf()
 ) : Parcelable

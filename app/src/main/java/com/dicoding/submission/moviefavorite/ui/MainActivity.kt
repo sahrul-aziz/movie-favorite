@@ -1,4 +1,4 @@
-package com.dicoding.submission.moviefavorite
+package com.dicoding.submission.moviefavorite.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.dicoding.submission.moviefavorite.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +21,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_movie, R.id.navigation_tv_show, R.id.navigation_favorite
+                R.id.navigation_movie,
+                R.id.navigation_tv_show,
+                R.id.navigation_favorite
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

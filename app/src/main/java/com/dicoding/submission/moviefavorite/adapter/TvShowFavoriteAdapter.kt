@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.submission.moviefavorite.R
 import com.dicoding.submission.moviefavorite.model.TvShowBase
+import com.dicoding.submission.moviefavorite.model.TvShowResults
 
 class TvShowFavoriteAdapter(private val activity: Activity) : RecyclerView.Adapter<TvShowViewHolder>() {
 
-    var listTvShow = ArrayList<TvShowBase>()
+    var listTvShow = ArrayList<TvShowResults>()
         set(value) {
             if (listTvShow.size > 0) {
                 this.listTvShow.clear()
@@ -18,14 +19,14 @@ class TvShowFavoriteAdapter(private val activity: Activity) : RecyclerView.Adapt
             notifyDataSetChanged()
         }
 
-    fun addItem(tvShow: TvShowBase) {
+    fun addItem(tvShow: TvShowResults) {
         this.listTvShow.add(tvShow)
         notifyItemInserted(this.listTvShow.size - 1)
     }
 
-    fun updateItem(position: Int, movie: TvShowBase) {
-        this.listTvShow[position] = movie
-        notifyItemChanged(position, movie)
+    fun updateItem(position: Int, tvShow: TvShowResults) {
+        this.listTvShow[position] = tvShow
+        notifyItemChanged(position, tvShow)
     }
 
     fun removeItem(position: Int) {

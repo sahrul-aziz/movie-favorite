@@ -1,11 +1,12 @@
 package com.dicoding.submission.moviefavorite.ui.movie
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.dicoding.submission.moviefavorite.BuildConfig
 import com.dicoding.submission.moviefavorite.model.ErrorResponse
 import com.dicoding.submission.moviefavorite.model.MovieBase
+import com.dicoding.submission.moviefavorite.model.MovieResults
 import com.dicoding.submission.moviefavorite.service.MovieService
 import com.dicoding.submission.moviefavorite.utils.AppConst.BASE_URL
 import com.dicoding.submission.moviefavorite.utils.AppConst.MOVIE_KEY
@@ -19,7 +20,7 @@ import java.util.*
 
 class MovieViewModel(private val state: SavedStateHandle) : ViewModel() {
 
-    val listMovie = MutableLiveData<MovieBase>()
+    val listMovie = MutableLiveData<ArrayList<MovieResults>>()
     var errorResponse = MutableLiveData<ErrorResponse>()
 
     internal fun retrieveMovie() {
@@ -48,7 +49,7 @@ class MovieViewModel(private val state: SavedStateHandle) : ViewModel() {
                     if (response.code() == 200) {
                         val responseBody = response.body()
                         if (responseBody != null) {
-                            listMovie.postValue(responseBody)
+                            listMovie.postValue(responseBody.results)
                         }
                     }
                 } else {
@@ -60,11 +61,11 @@ class MovieViewModel(private val state: SavedStateHandle) : ViewModel() {
         })
     }
 
-    fun getMovie(): MovieBase? {
-        return state.get(MOVIE_KEY)
+    fun getMovie(): ArrayList<MovieResults>? {
+        return listMovie.value
     }
 
-    fun saveMovie(movie: MovieBase?) {
+    fun saveMovie(movie: ArrayList<MovieResults>?) {
         state.set(MOVIE_KEY, movie)
     }
 }

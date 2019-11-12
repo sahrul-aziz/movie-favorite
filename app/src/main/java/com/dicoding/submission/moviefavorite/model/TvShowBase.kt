@@ -8,5 +8,5 @@ data class TvShowBase(
     val page : Int = 0,
     val total_results : Int = 0,
     val total_pages : Int = 0,
-    val results : List<TvShowResults> = listOf()
+    val results : ArrayList<TvShowResults> = arrayListOf()
 ) : Parcelable
