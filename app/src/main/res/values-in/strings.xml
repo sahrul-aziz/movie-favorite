@@ -4,6 +4,9 @@
     <string name="title_movie">Film</string>
     <string name="title_tv_show">Acara TV</string>
     <string name="title_favorite">Favorit</string>
+    <string name="title_movie_detail">Detil Film</string>
+    <string name="title_tv_show_detail">Detil Acara TV</string>
+    <string name="change_language_settings">Ubah pengaturan bahasa</string>
     <string name="add_favorite">Tambah Favorit</string>
     <string name="view_detail">Lihat Detil</string>
     <string name="no_movie">Ups, tidak ada Film disini!</string>
@@ -20,4 +23,8 @@
     <string name="language_placeholder">Inggris</string>
     <string name="overview">Kilasan Singkat</string>
     <string name="overview_not_available">Kilasan Singkat dalam bahasa ini tidak tersedia</string>
+    <string name="release_date_label">Release date: </string>
+    <string name="popularity_label">Popularity: </string>
+    <string name="popularity_placeholder">5000</string>
+    <string name="year_placeholder">2018</string>
 </resources>
