@@ -52,12 +52,14 @@
 
         <TextView
             android:id="@+id/tv_show_overview"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:maxLines="6"
+            android:maxLines="4"
+            android:ellipsize="end"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@id/tv_show_poster"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_show_score"
             tools:text="@string/overview"/>
 

@@ -38,8 +38,12 @@ class MovieDetailActivity : AppCompatActivity() {
         return true
     }
 
-    private fun getLanguage(language: String) : String {
-        val locale = Locale(language)
-        return locale.displayLanguage
+    private fun getLanguage(language: String?) : String {
+        val locale: Locale
+        language?.let {
+            locale = Locale(language)
+            return locale.displayLanguage
+        }
+        return Locale.ENGLISH.toString()
     }
 }

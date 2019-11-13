@@ -2,6 +2,7 @@ package com.dicoding.submission.moviefavorite.adapter
 
 import android.content.Intent
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.submission.moviefavorite.R
@@ -16,7 +17,7 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(movie: MovieResults) {
         with(itemView) {
             movie_title.text = movie.title
-            var overview: String = resources.getString(R.string.overview_not_available)
+            var overview: String? = resources.getString(R.string.overview_not_available)
             if (movie.overview != "") {
                 overview = movie.overview
             }
@@ -28,6 +29,9 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 val intent = Intent(itemView.context, MovieDetailActivity::class.java)
                 intent.putExtra(MOVIE_KEY, movie)
                 itemView.context.startActivity(intent)
+            }
+            btn_movie_favorite.setOnClickListener {
+
             }
         }
     }

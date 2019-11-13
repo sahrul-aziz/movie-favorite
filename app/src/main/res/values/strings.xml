@@ -3,6 +3,8 @@
     <string name="title_movie">Movie</string>
     <string name="title_tv_show">TV Show</string>
     <string name="title_favorite">Favorite</string>
+    <string name="tab_favorite_movie">Favorite Movie</string>
+    <string name="tab_favorite_tv_show">Favorite TV Show</string>
     <string name="title_movie_detail">Detail Movie</string>
     <string name="title_tv_show_detail">Detail TV Show</string>
     <string name="change_language_settings">Change Language Settings</string>
@@ -12,6 +14,8 @@
     <string name="no_tv_show">Oops, we got no TV Show here!</string>
     <string name="no_favorite_movie">You do not have any favorite movie right now</string>
     <string name="no_favorite_tv_show">You do not have any favorite tv show right now</string>
+    <string name="save_success">Success add item to favorite</string>
+    <string name="save_failed">Failed add item to favorite</string>
 
     <string name="movie_poster">Movie Poster</string>
     <string name="movie_title">Movie Title</string>

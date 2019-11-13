@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateVMFactory
@@ -28,13 +27,14 @@ class MovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.fragment_movie, container, false)
+        movieAdapter = MovieAdapter()
+        movieAdapter.notifyDataSetChanged()
+        movieAdapter.initFavoriteHelper(this.requireContext())
         return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        movieAdapter = MovieAdapter()
-        movieAdapter.notifyDataSetChanged()
 
         root.rv_movie.layoutManager = LinearLayoutManager(this.context)
         root.rv_movie.adapter = movieAdapter
@@ -82,5 +82,10 @@ class MovieFragment : Fragment() {
 
     private fun showSnackbar(errorResponse: ErrorResponse){
         Snackbar.make(root, "Error [code: ${errorResponse.statusCode}]: ${errorResponse.statusMessage}", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        movieAdapter.closeFavoriteHelper()
     }
 }

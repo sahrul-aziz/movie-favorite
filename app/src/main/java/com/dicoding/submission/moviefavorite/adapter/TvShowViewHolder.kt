@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.submission.moviefavorite.R
+import com.dicoding.submission.moviefavorite.db.FavoriteHelper
 import com.dicoding.submission.moviefavorite.model.TvShowBase
 import com.dicoding.submission.moviefavorite.model.TvShowResults
 import com.dicoding.submission.moviefavorite.ui.TvShowDetailActivity
@@ -14,6 +15,7 @@ import com.dicoding.submission.moviefavorite.utils.AppConst.TV_SHOW_KEY
 import kotlinx.android.synthetic.main.list_item_tv_show.view.*
 
 class TvShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
     fun bind(tvShow: TvShowResults) {
         with(itemView) {
             tv_show_title.text = tvShow.original_name
@@ -29,6 +31,9 @@ class TvShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 val intent = Intent(itemView.context, TvShowDetailActivity::class.java)
                 intent.putExtra(TV_SHOW_KEY, tvShow)
                 itemView.context.startActivity(intent)
+            }
+            btn_tv_show_favorite.setOnClickListener {
+
             }
         }
     }
