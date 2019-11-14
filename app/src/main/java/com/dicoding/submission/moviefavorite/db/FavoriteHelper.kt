@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.dicoding.submission.moviefavorite.db.DatabaseContract.FavoriteColumn.Companion.FAVORITE_TABLE_NAME
+import com.dicoding.submission.moviefavorite.db.DatabaseContract.FavoriteColumn.Companion.ITEM_ID
 import com.dicoding.submission.moviefavorite.db.DatabaseContract.FavoriteColumn.Companion.ITEM_TYPE
 import com.dicoding.submission.moviefavorite.db.DatabaseContract.FavoriteColumn.Companion._ID
 import java.sql.SQLException
@@ -58,7 +59,7 @@ class FavoriteHelper(context: Context) {
         return database.query(
             FAVORITE_TABLE,
             null,
-            "$_ID = ?",
+            "$ITEM_ID = ?",
             arrayOf(id),
             null,
             null,

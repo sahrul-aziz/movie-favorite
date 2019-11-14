@@ -16,6 +16,7 @@
     <string name="no_favorite_tv_show">You do not have any favorite tv show right now</string>
     <string name="save_success">Success add item to favorite</string>
     <string name="save_failed">Failed add item to favorite</string>
+    <string name="item_already_exist">Item already existed on favorite</string>
 
     <string name="movie_poster">Movie Poster</string>
     <string name="movie_title">Movie Title</string>

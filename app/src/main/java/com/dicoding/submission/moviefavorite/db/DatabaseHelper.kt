@@ -10,9 +10,10 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
 
     companion object {
         private const val DATABASE_NAME = "catalogue"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
         private var CREATE_TABLE_FAVORITE = "CREATE TABLE $FAVORITE_TABLE_NAME (" +
                 "${FavoriteColumn._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "${FavoriteColumn.ITEM_ID} INTEGER UNIQUE," +
                 "${FavoriteColumn.TITLE} TEXT NOT NULL," +
                 "${FavoriteColumn.POSTER_PATH} TEXT NOT NULL," +
                 "${FavoriteColumn.DATE} TEXT NOT NULL," +
@@ -31,7 +32,6 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $FAVORITE_TABLE_NAME")
-        db.execSQL("DROP TABLE IF EXISTS favorit")
         onCreate(db)
     }
 }

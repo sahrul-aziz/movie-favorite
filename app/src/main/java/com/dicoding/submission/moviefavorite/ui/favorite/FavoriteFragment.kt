@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.dicoding.submission.moviefavorite.R
 import com.dicoding.submission.moviefavorite.adapter.SectionsPagerAdapter
-import com.dicoding.submission.moviefavorite.db.FavoriteHelper
 import kotlinx.android.synthetic.main.fragment_favorite.view.*
 import androidx.appcompat.app.AppCompatActivity
 
 class FavoriteFragment : Fragment() {
 
-    private lateinit var favoriteHelper: FavoriteHelper
     private lateinit var root: View
     private lateinit var mContext: FragmentActivity
 
@@ -41,7 +39,5 @@ class FavoriteFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.elevation = 0f
-        favoriteHelper = FavoriteHelper(root.context).getInstance(root.context)
-        favoriteHelper.open()
     }
 }

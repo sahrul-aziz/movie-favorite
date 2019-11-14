@@ -34,6 +34,7 @@ class TvShowFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         tvShowAdapter = TvShowAdapter()
         tvShowAdapter.notifyDataSetChanged()
+        tvShowAdapter.initFavoriteHelper(this.requireContext())
 
         root.rv_tv_show.layoutManager = LinearLayoutManager(this.context)
         root.rv_tv_show.adapter = tvShowAdapter

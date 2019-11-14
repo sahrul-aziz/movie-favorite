@@ -1,41 +1,73 @@
 package com.dicoding.submission.moviefavorite.ui.favorite
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submission.moviefavorite.R
-import kotlinx.android.synthetic.main.list_item_favorite_movie.*
+import com.dicoding.submission.moviefavorite.adapter.MovieFavoriteAdapter
+import com.dicoding.submission.moviefavorite.db.FavoriteHelper
+import com.dicoding.submission.moviefavorite.helper.MovieMappingHelper
+import com.dicoding.submission.moviefavorite.model.MovieResults
+import com.dicoding.submission.moviefavorite.utils.AppConst.MOVIE_KEY
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.tab_favorite_movie.view.*
+import kotlinx.coroutines.*
 
 class MovieFavoriteFragment : Fragment() {
-    companion object {
 
-        private val ARG_SECTION_NUMBER = "section_number"
-
-        fun newInstance(index: Int): MovieFavoriteFragment {
-            val fragment = MovieFavoriteFragment()
-            val bundle = Bundle()
-            bundle.putInt(ARG_SECTION_NUMBER, index)
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
+    private lateinit var root: View
+    private lateinit var favoriteHelper: FavoriteHelper
+    private lateinit var movieFavAdapter: MovieFavoriteAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.list_item_favorite_movie, container, false)
+        root = inflater.inflate(R.layout.tab_favorite_movie, container, false)
+        return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        movieFavAdapter = MovieFavoriteAdapter()
+        movieFavAdapter.notifyDataSetChanged()
+        favoriteHelper = FavoriteHelper(root.context).getInstance(root.context)
+        favoriteHelper.open()
 
-        var index = 1
-        if (getArguments() != null) {
-            index = arguments?.getInt(ARG_SECTION_NUMBER, 0) as Int
+        root.rv_favorite_movie.layoutManager = LinearLayoutManager(this.context)
+        root.rv_favorite_movie.adapter = movieFavAdapter
+
+        if (savedInstanceState != null) {
+            val listMovie = savedInstanceState.getParcelableArrayList<MovieResults>(MOVIE_KEY)
+            movieFavAdapter.listMovie = listMovie as ArrayList<MovieResults>
+        } else {
+            loadMovieAsync()
         }
+    }
 
-        section_label.text = "${getString(R.string.tab_favorite_movie)} $index"
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(MOVIE_KEY, movieFavAdapter.listMovie)
+    }
+
+    private fun loadMovieAsync() {
+        GlobalScope.launch(Dispatchers.Main) {
+            root.progressbar_fav_movie.visibility = View.VISIBLE
+            delay(1500)
+            val deferredNotes = async(Dispatchers.IO) {
+                val cursor = favoriteHelper.queryByItemType(MOVIE_KEY)
+                MovieMappingHelper.mapCursorToArrayList(cursor)
+            }
+            root.progressbar_fav_movie.visibility = View.INVISIBLE
+            val movies = deferredNotes.await()
+            if (movies.size > 0) {
+                movieFavAdapter.listMovie = movies
+            } else {
+                movieFavAdapter.listMovie = ArrayList()
+                root.movie_empty.text = resources.getString(R.string.no_favorite_movie)
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@
     <string name="no_favorite_tv_show">Kamu tidak memiliki Acara TV favorit saat ini</string>
     <string name="save_success">Berhasil menambahkan item ke favorit</string>
     <string name="save_failed">Gagal menambahkan item ke favorit</string>
+    <string name="item_already_exist">Item sudah ada di favorite</string>
 
     <string name="movie_poster">Poster Film</string>
     <string name="movie_title">Judul Film</string>

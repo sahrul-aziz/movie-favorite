@@ -38,10 +38,6 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         favoriteHelper.open()
     }
 
-    fun closeFavoriteHelper() {
-        favoriteHelper.close()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val root = LayoutInflater.from(parent.context).inflate(R.layout.list_item_movie, parent, false)
         return MovieViewHolder(root)
@@ -67,16 +63,17 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
                 Glide.with(context).load("${AppConst.IMAGE_URL}/w185${movie.poster_path}").into(movie_poster)
                 setOnClickListener {
                     val intent = Intent(itemView.context, MovieDetailActivity::class.java)
-                    intent.putExtra(AppConst.MOVIE_KEY, movie)
+                    intent.putExtra(MOVIE_KEY, movie)
                     itemView.context.startActivity(intent)
                 }
                 btn_movie_favorite.setOnClickListener {
                     val values = ContentValues()
+                    values.put(DatabaseContract.FavoriteColumn.ITEM_ID, movie.id)
                     values.put(DatabaseContract.FavoriteColumn.TITLE, movie.title)
                     values.put(DatabaseContract.FavoriteColumn.POSTER_PATH, movie.poster_path)
                     values.put(DatabaseContract.FavoriteColumn.DATE, movie.release_date)
                     values.put(DatabaseContract.FavoriteColumn.POPULARITY, movie.popularity)
-                    values.put(DatabaseContract.FavoriteColumn.OVERVIEW, movie.overview)
+                    values.put(DatabaseContract.FavoriteColumn.SCORE, movie.vote_average)
                     values.put(DatabaseContract.FavoriteColumn.LANGUAGE, movie.original_language)
                     values.put(DatabaseContract.FavoriteColumn.OVERVIEW, movie.overview)
                     values.put(DatabaseContract.FavoriteColumn.ITEM_TYPE, MOVIE_KEY)

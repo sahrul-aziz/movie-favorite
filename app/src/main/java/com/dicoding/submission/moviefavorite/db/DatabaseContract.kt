@@ -8,6 +8,7 @@ internal object DatabaseContract {
         companion object {
             const val FAVORITE_TABLE_NAME = "favorite"
             const val _ID = "_id"
+            const val ITEM_ID = "item_id"
             const val TITLE = "title"
             const val POSTER_PATH = "poster_path"
             const val DATE = "release_date"

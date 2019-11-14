@@ -83,9 +83,4 @@ class MovieFragment : Fragment() {
     private fun showSnackbar(errorResponse: ErrorResponse){
         Snackbar.make(root, "Error [code: ${errorResponse.statusCode}]: ${errorResponse.statusMessage}", Snackbar.LENGTH_SHORT).show()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        movieAdapter.closeFavoriteHelper()
-    }
 }
